@@ -1,0 +1,125 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.payment-container {
+    width: 600px;
+    padding: 0px 0px 40px 0px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.header {
+    background-color: #3a3d53;
+    color: #fff;
+    padding: 10px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    text-align: center;
+}
+.pix-key {
+    padding: 15px;
+}
+.pix-key label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+.pix-key input[type="text"],
+.pix-key input[type="date"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.copy-pixkey {
+    text-align: right;
+    padding: 15px;
+}
+.copy-pixkey {
+    padding: 10px 20px;
+    background-color: rgb(119, 122, 119);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.copy-pixkey:hover {
+    background-color: rgb(151, 154, 151);
+}
+
+
+.confirm-button {
+    text-align: right;
+    padding: 15px;
+}
+.confirm-button {
+    padding: 10px 20px;
+    background-color: green;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.confirm-button:hover {
+    background-color: rgb(4, 173, 4);
+}
+
+.price {
+    
+    padding: 15px;
+}
+.price label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+.price input[type="text"] {
+    font-size: 30px;
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+
+.payment-instructions {
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.payment-instructions h3 {
+    color: #495057;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.payment-instructions ol {
+    padding-left: 20px;
+    margin-bottom: 0;
+}
+
+.payment-instructions li {
+    color: #6c757d;
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+.payment-instructions li:last-child {
+    margin-bottom: 0;
+}
+

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Administrativo</title>
+
+    <!-- CSS da pagina -->
+    <link rel="stylesheet" href="css/adm.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <!-- Favicon da pagina com formatos para varios navegadores -->
+    <link rel="icon" type="image/png" href="favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg" />
+    <link rel="shortcut icon" href="favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Agenda" />
+    <link rel="manifest" href="favicon/site.webmanifest" />
+   
+</head>
+
+<body>
+    <div class="admin-container">
+        <div class="header"><h2>Gerenciamento de Horários</h2>
+        </div>
+        
+        <div id="calendar"></div>
+        <div id="timeSlots">
+            <!-- Os horários serão carregados aqui via JavaScript -->
+        </div>
+        <a href="index.html" class="back-button">Voltar para a página inicial</a>
+    </div>
+
+    <script>
+        const timeSlots = [
+            '09:00', '09:30', '10:00', '10:30', '11:00', '11:30',
+            '12:00', '12:30', '13:00', '13:30', '14:00', '14:30',
+            '15:00', '15:30', '16:00', '16:30', '17:00', '17:30'
+        ];
+    
+        // Estrutura para armazenar horários desabilitados por data
+        let disabledTimeSlots = JSON.parse(localStorage.getItem('disabledTimeSlots') || '{}');
+    
+        flatpickr("#calendar", {
+            inline: true,
+            minDate: "today",
+            dateFormat: "Y-m-d",
+            onChange: function(selectedDates, dateStr) {
+                loadTimeSlots(dateStr);
+            }
+        });
+    
+        function loadTimeSlots(date) {
+            const container = document.getElementById('timeSlots');
+            container.innerHTML = '';
+    
+            timeSlots.forEach(time => {
+                const isDisabled = isTimeSlotDisabled(date, time);
+                const div = document.createElement('div');
+                div.className = `time-block ${isDisabled ? 'disabled' : ''}`;
+                div.innerHTML = `
+                    <span>${time}</span>
+                    <button 
+                        class="toggle-button ${!isDisabled ? 'enabled' : ''}" 
+                        onclick="toggleTimeSlot('${date}', '${time}')"
+                    >
+                        ${isDisabled ? 'Habilitar' : 'Desabilitar'}
+                    </button>
+                `;
+                container.appendChild(div);
+            });
+        }
+    
+        function isTimeSlotDisabled(date, time) {
+            return disabledTimeSlots[date]?.includes(time) || false;
+        }
+    
+        function toggleTimeSlot(date, time) {
+            if (!disabledTimeSlots[date]) {
+                disabledTimeSlots[date] = [];
+            }
+    
+            const index = disabledTimeSlots[date].indexOf(time);
+            if (index === -1) {
+                // Desabilita o horário
+                disabledTimeSlots[date].push(time);
+            } else {
+                // Habilita o horário
+                disabledTimeSlots[date].splice(index, 1);
+            }
+    
+            // Remove a data se não houver horários desabilitados
+            if (disabledTimeSlots[date].length === 0) {
+                delete disabledTimeSlots[date];
+            }
+    
+            // Salva no localStorage
+            localStorage.setItem('disabledTimeSlots', JSON.stringify(disabledTimeSlots));
+            
+            // Atualiza a exibição
+            loadTimeSlots(date);
+        }
+    
+        // Carrega os horários para a data atual quando a página é aberta
+        window.onload = function() {
+            const today = new Date().toISOString().split('T')[0];
+            loadTimeSlots(today);
+        };
+    </script>
+
+    <script src="script.js"></script>
+</body>
+</html>

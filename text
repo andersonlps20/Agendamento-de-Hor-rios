@@ -1,0 +1,31 @@
+Sistema de Agendamento Online
+Este é um sistema de agendamento online desenvolvido para pequenos negócios, como salões de beleza ou barbearias. O sistema permite que os clientes agendem horários de forma autônoma, enquanto oferece aos administradores controle sobre a disponibilidade de horários.
+
+Características Principais
+Interface de Usuário Amigável: Permite que os clientes selecionem serviços, datas e horários disponíveis de forma intuitiva.
+
+Painel Administrativo: Os administradores podem gerenciar a disponibilidade de horários, habilitando ou desabilitando slots específicos para cada data.
+
+Integração com Pagamento: Após o agendamento, os clientes são direcionados para uma página de pagamento que inclui instruções para pagamento via PIX.
+
+Confirmação via WhatsApp: O sistema gera uma mensagem formatada para o WhatsApp, permitindo que o cliente confirme o agendamento e o pagamento diretamente com o estabelecimento.
+
+Responsividade: O design é responsivo, adaptando-se a diferentes tamanhos de tela para uma experiência consistente em dispositivos móveis e desktops.
+
+Persistência de Dados: Utiliza localStorage para armazenar temporariamente os dados do agendamento e as configurações de disponibilidade.
+
+Tecnologias Utilizadas
+HTML5
+CSS3
+JavaScript (Vanilla)
+Flatpickr (para seleção de datas)
+Funcionalidades
+Seleção de serviço com atualização automática de preço
+Escolha de data e horário com visualização dinâmica de disponibilidade
+Modal de confirmação antes do agendamento
+Página de pagamento com instruções detalhadas
+Painel administrativo para gerenciamento de horários disponíveis
+Integração simples com WhatsApp para confirmação de agendamento
+Este projeto é ideal para pequenos negócios que desejam oferecer um sistema de agendamento online simples e eficiente para seus clientes, com a flexibilidade de gerenciar a disponibilidade de horários conforme necessário.
+
+Esta descrição destaca as principais características e funcionalidades do sistema, fornecendo uma visão geral clara e concisa para potenciais usuários ou colaboradores no GitHub.

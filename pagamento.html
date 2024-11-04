@@ -1,0 +1,111 @@
+<!-- pagamento.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <title>Página de Pagamento</title>
+
+    <!-- CSS da pagina -->
+    <link rel="stylesheet" href="css/pagamento.css">
+
+    <!-- Favicon da pagina com formatos para varios navegadores -->
+    <link rel="icon" type="image/png" href="favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg" />
+    <link rel="shortcut icon" href="favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Agenda" />
+    <link rel="manifest" href="favicon/site.webmanifest" />
+
+</head>
+
+<body>
+    <div class="payment-container">
+        <div class="header">
+            <h2>Página de Pagamento</h2>
+        </div>
+
+        <div class="pix-key">
+            <label>Chave PIX:</label>
+            <input type="text" id="pixKey" value="chave_pix_fixa@exemplo.com" readonly>
+            <button onclick="copyPixKey()">Copiar Chave</button>
+
+        </div>
+        <div class="price">
+            <label>Preço:</label>
+            <input type="text" id="price" value="" disabled>
+
+        </div>
+
+        <div class="payment-instructions">
+            <h3>Instruções de Pagamento:</h3>
+            <ol>
+                <li>Copie a chave PIX acima clicando no botão "Copiar Chave".</li>
+                <li>Abra o aplicativo do seu banco.</li>
+                <li>Selecione a opção de pagamento via PIX.</li>
+                <li>Cole a chave PIX copiada.</li>
+                <li>Digite o valor exato mostrado no campo "Preço".</li>
+                <li>Confirme o pagamento no seu aplicativo bancário.</li>
+                <li>Após realizar o pagamento, clique no botão "Confirmar Pagamento" abaixo.</li>
+            </ol>
+        </div>
+
+        <button class="confirm-button" onclick="sendToWhatsApp()">Confirmar Pagamento</button>
+    </div>
+
+    <script>
+        // Carrega os dados do agendamento ao carregar a página no LocalSorage
+        window.onload = function () {
+            const appointmentData = JSON.parse(localStorage.getItem('appointmentData'));
+            if (appointmentData) {
+                document.getElementById('price').value = appointmentData.price;
+            }
+        };
+
+        function copyPixKey() {
+            const pixKeyInput = document.getElementById('pixKey');
+            pixKeyInput.select();
+            document.execCommand('copy');
+            alert('Chave PIX copiada para a área de transferência!');
+        }
+
+        function sendToWhatsApp() {
+            const appointmentData = JSON.parse(localStorage.getItem('appointmentData'));
+
+            // Formata a data para dd/mm/aaaa
+            const formattedDate = new Date(appointmentData.date).toLocaleDateString('pt-BR');
+
+            // Monta a mensagem para o WhatsApp
+            const message = `Olá! Gostaria de confirmar meu agendamento:
+            
+📝 *DADOS DO AGENDAMENTO*
+➤ Nome: ${appointmentData.name}
+➤ Telefone: ${appointmentData.tel}
+➤ Serviço: ${appointmentData.service}
+➤ Preço: ${appointmentData.price}
+➤ Data: ${formattedDate}
+➤ Horário: ${appointmentData.time}
+
+💳 *PAGAMENTO*
+Realizei o pagamento via PIX e aguardo a confirmação do agendamento.
+
+Obrigado!`;
+
+            // Número do WhatsApp do estabelecimento (substitua pelo número correto)
+            const phoneNumber = "5511991597989"; // Substitua pelo número do estabelecimento
+
+            // Codifica a mensagem para URL
+            const encodedMessage = encodeURIComponent(message);
+
+            // Cria o link do WhatsApp
+            const whatsappLink = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+
+            // Redireciona para o WhatsApp
+            window.open(whatsappLink, '_blank');
+        }
+    </script>
+</body>
+
+</html>

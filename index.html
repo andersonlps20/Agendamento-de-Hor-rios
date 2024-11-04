@@ -1,0 +1,116 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Agendamento Online</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+        <!-- CSS da pagina -->
+        <link rel="stylesheet" href="css/styles.css">
+
+        <!-- Favicon da pagina com formatos para varios navegadores -->
+        <link rel="icon" type="image/png" href="favicon/favicon-96x96.png" sizes="96x96" />
+        <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg" />
+        <link rel="shortcut icon" href="favicon/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png" />
+        <meta name="apple-mobile-web-app-title" content="Agenda" />
+        <link rel="manifest" href="favicon/site.webmanifest" />
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="header">
+                <h2>Agendamento Online</h2>
+            </div>
+            
+            <div class="form-group">
+                <label for="name">Nome:</label>
+                <input type="text" id="name" placeholder="Digite seu nome">
+            </div>
+            
+            <div class="form-group">
+                <label for="tel">Telefone:</label>
+                <input type="text" id="tel" placeholder="Digite seu telefone ou celular">
+            </div>
+            
+            <div class="form-group">
+                <label for="service">Serviço:</label>
+                <select id="service" onchange="updatePrice()">
+                    <option value="" disabled selected>Selecione um serviço</option>
+                    <option value="20">Cortar Cabelo</option>
+                    <option value="25">Pintar Cabelo</option>
+                    <option value="35">Cabelo e Barba</option>
+                    <option value="15">Barba</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Preço:</label>
+                <input type="text" id="price" value="R$ 0,00" disabled>
+            </div>
+            
+            <div class="form-group">
+                <label for="date">Data Agendamento:</label>
+                <input type="date" id="date">
+            </div>
+            
+            <div class="form-group">
+                <label>Horário:</label>
+                <div class="time-slots" id="timeSlots">
+                    <!-- Botões de horário aqui -->
+                    <div class="time-slot"><button type="button" onclick="setTime('09:00')">09:00</button></div>
+                    <div class="time-slot"><button type="button" onclick="setTime('09:30')">09:30</button></div>
+                    <div class="time-slot"><button type="button" onclick="setTime('10:00')">10:00</button></div>
+                    <div class="time-slot"><button type="button" onclick="setTime('10:30')">10:30</button></div>
+                    <div class="time-slot"><button type="button" onclick="setTime('11:00')">11:00</button></div>
+                    <div class="time-slot"><button type="button" onclick="setTime('11:30')">11:30</button></div>
+                    <div class="time-slot"><button type="button" onclick="setTime('12:00')">12:00</button></div>
+                    <div class="time-slot"><button type="button" onclick="setTime('12:30')">12:30</button></div>
+                    <div class="time-slot"><button type="button" onclick="setTime('13:00')">13:00</button></div>
+                    <div class="time-slot"><button type="button" onclick="setTime('13:30')">13:30</button></div>
+                    <div class="time-slot"><button type="button" onclick="setTime('14:00')">14:00</button></div>
+                    <div class="time-slot"><button type="button" onclick="setTime('14:30')">14:30</button></div>
+                    <div class="time-slot"><button type="button" onclick="setTime('15:00')">15:00</button></div>
+                    <div class="time-slot"><button type="button" onclick="setTime('15:30')">15:30</button></div>
+                    <div class="time-slot"><button type="button" onclick="setTime('16:00')">16:00</button></div>
+                    <div class="time-slot"><button type="button" onclick="setTime('16:30')">16:30</button></div>
+                    <div class="time-slot"><button type="button" onclick="setTime('17:00')">17:00</button></div>
+                    <div class="time-slot"><button type="button" onclick="setTime('17:30')">17:30</button></div>
+                </div>
+            </div>
+            
+            <div class="submit-button">
+                <button onclick="showModal()">AGENDAR</button>
+            </div>
+
+            <div id="confirmationModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeModal()">&times;</span>
+                    <h2>Confirmação de Agendamento</h2>
+                    <div id="confirmationDetails"></div>
+                    <button class="edit-button" onclick="editDetails()">Editar</button>
+                    <button class="salve-button" onclick="saveDetails()">Salvar e Pagar</button>
+                </div>
+            </div>
+        </div>
+        
+        
+
+
+        <button class="config-button" onclick="showPasswordModal()">
+            <img src="gear-icon.svg" alt="Configurações">
+        </button>
+        
+        <div id="passwordModal" class="password-modal">
+            <div class="password-modal-content">
+                <h3>Digite a senha de administrador</h3>
+                <input type="password" id="adminPassword" class="password-input">
+                <button class="password-submit" onclick="checkPassword()">Entrar</button>
+            </div>
+        </div>
+
+        <script src="script.js"></script>
+    </body>
+</html>
