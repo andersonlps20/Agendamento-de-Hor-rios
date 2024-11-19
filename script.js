@@ -38,7 +38,7 @@ function saveDetails() {
         service: document.getElementById('service').options[document.getElementById('service').selectedIndex].text,
         price: document.getElementById('price').value,
         date: document.getElementById('date').value,
-        time: document.querySelector('.time-slot button.active') ? document.querySelector('.time-slot button.active').innerText : 'Não selecionado'
+        time: document.querySelector('.time-slot button.selected') ? document.querySelector('.time-slot button.selected').innerText : 'Não selecionado'
     };
 
     localStorage.setItem('appointmentData', JSON.stringify(appointmentData));
@@ -57,9 +57,11 @@ function setTime(time) {
 
     // Adiciona a classe 'selected' ao botão clicado
     event.target.classList.add('selected');
+    
+    // para lidar com o horário selecionado
+    selectedTime = time; // Armazena o horário selecionado
 
     // Aqui você pode adicionar qualquer outra lógica necessária
-    // para lidar com o horário selecionado
 }
 
 

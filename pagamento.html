@@ -72,39 +72,39 @@
         }
 
         function sendToWhatsApp() {
-            const appointmentData = JSON.parse(localStorage.getItem('appointmentData'));
+    const appointmentData = JSON.parse(localStorage.getItem('appointmentData'));
 
-            // Formata a data para dd/mm/aaaa
-            const formattedDate = new Date(appointmentData.date).toLocaleDateString('pt-BR');
+    // Formata a data para dd/mm/aaaa
+    const formattedDate = new Date(appointmentData.date).toLocaleDateString('pt-BR');
 
-            // Monta a mensagem para o WhatsApp
-            const message = `Olá! Gostaria de confirmar meu agendamento:
-            
+    // Monta a mensagem para o WhatsApp
+    const message = `Olá! Gostaria de confirmar meu agendamento:
+    
 📝 *DADOS DO AGENDAMENTO*
 ➤ Nome: ${appointmentData.name}
 ➤ Telefone: ${appointmentData.tel}
 ➤ Serviço: ${appointmentData.service}
 ➤ Preço: ${appointmentData.price}
 ➤ Data: ${formattedDate}
-➤ Horário: ${appointmentData.time}
+➤ Horário: ${appointmentData.time}  // Incluindo o horário selecionado
 
 💳 *PAGAMENTO*
 Realizei o pagamento via PIX e aguardo a confirmação do agendamento.
 
 Obrigado!`;
 
-            // Número do WhatsApp do estabelecimento (substitua pelo número correto)
-            const phoneNumber = "5511991597989"; // Substitua pelo número do estabelecimento
+    // Número do WhatsApp do estabelecimento (substitua pelo número correto)
+    const phoneNumber = "5511991597989"; // Substitua pelo número do estabelecimento
 
-            // Codifica a mensagem para URL
-            const encodedMessage = encodeURIComponent(message);
+    // Codifica a mensagem para URL
+    const encodedMessage = encodeURIComponent(message);
 
-            // Cria o link do WhatsApp
-            const whatsappLink = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+    // Cria o link do WhatsApp
+    const whatsappLink = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
 
-            // Redireciona para o WhatsApp
-            window.open(whatsappLink, '_blank');
-        }
+    // Redireciona para o WhatsApp
+    window.open(whatsappLink, '_blank');
+}
     </script>
 </body>
 
